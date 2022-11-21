@@ -69,12 +69,19 @@ class TrackLoader:
         )
 
         tracks.extend(loaded_tracks.values())
-        log.info(f"Conventionally loaded tracks: {len(loaded_tracks)}")
+        print(f"Conventionally loaded tracks: {len(loaded_tracks)}")
+
+        print(f"{len(tracks)} tracks before _filter_tracks")
 
         tracks = self._filter_tracks(tracks)
 
+        print(f"{len(tracks)} tracks after _filter_tracks")
+
         # merge tracks that took place within one hour
         tracks = self._merge_tracks(tracks)
+
+        print(f"{len(tracks)} tracks after _merge_tracks")
+
         # filter out tracks with length < min_length
         return [t for t in tracks if t.length >= self.min_length]
 
@@ -103,6 +110,7 @@ class TrackLoader:
 
 
     def _filter_tracks(self, tracks):
+        print(f"size of _filter_tracks input tracks  : {len(tracks)}")
         filtered_tracks = []
         for t in tracks:
             file_name = t.file_names[0]
