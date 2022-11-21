@@ -108,7 +108,6 @@ class TrackLoader:
         return [t for t in tracks if t.length >= 0]
         # return [t for t in tracks if t.length >= self.min_length]
 
-
     def _filter_tracks(self, tracks):
         print(f"size of _filter_tracks input tracks  : {len(tracks)}")
         filtered_tracks = []
