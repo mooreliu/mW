@@ -78,7 +78,7 @@ class TrackLoader:
         print(f"{len(tracks)} tracks after _filter_tracks")
 
         # merge tracks that took place within one hour
-        tracks = self._merge_tracks(tracks)
+        # tracks = self._merge_tracks(tracks)
 
         print(f"{len(tracks)} tracks after _merge_tracks")
 
