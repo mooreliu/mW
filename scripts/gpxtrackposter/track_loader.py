@@ -103,23 +103,21 @@ class TrackLoader:
 
 
     def _filter_tracks(self, tracks):
-    
-        return tracks
-        # filtered_tracks = []
-        # for t in tracks:
-        #     file_name = t.file_names[0]
-        #     if int(t.length) == 0:
-        #         log.info(f"{file_name}: skipping empty track")
-        #     elif not t.start_time_local:
-        #         log.info(f"{file_name}: skipping track without start time")
-        #     elif not self.year_range.contains(t.start_time_local):
-        #         log.info(
-        #             f"{file_name}: skipping track with wrong year {t.start_time_local.year}"
-        #         )
-        #     else:
-        #         t.special = file_name in self.special_file_names
-        #         filtered_tracks.append(t)
-        # return filtered_tracks
+        filtered_tracks = []
+        for t in tracks:
+            file_name = t.file_names[0]
+            if int(t.length) == 0:
+                print(f"{file_name}: skipping empty track")
+            elif not t.start_time_local:
+                print(f"{file_name}: skipping track without start time")
+            elif not self.year_range.contains(t.start_time_local):
+                print(
+                    f"{file_name}: skipping track with wrong year {t.start_time_local.year}"
+                )
+            else:
+                t.special = file_name in self.special_file_names
+                filtered_tracks.append(t)
+        return filtered_tracks
 
     @staticmethod
     def _merge_tracks(tracks):
