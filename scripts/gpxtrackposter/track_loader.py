@@ -104,9 +104,9 @@ class TrackLoader:
         tracks = self._filter_tracks(tracks)
         print(f"After filter tracks: {len(tracks)}")
         # merge tracks that took place within one hour
-        tracks = self._merge_tracks(tracks)
-        return [t for t in tracks if t.length >= 0]
-        # return [t for t in tracks if t.length >= self.min_length]
+        # tracks = self._merge_tracks(tracks)
+        # return [t for t in tracks if t.length >= 0]
+        return [t for t in tracks if t.length >= self.min_length]
 
     def _filter_tracks(self, tracks):
         print(f"size of _filter_tracks input tracks  : {len(tracks)}")
@@ -142,7 +142,7 @@ class TrackLoader:
                 else:
                     merged_tracks.append(t)
             last_end_time = t.end_time_local
-        log.info(f"Merged {len(tracks) - len(merged_tracks)} track(s)")
+        print(f"Merged {len(tracks) - len(merged_tracks)} track(s)")
         return merged_tracks
 
     @staticmethod
