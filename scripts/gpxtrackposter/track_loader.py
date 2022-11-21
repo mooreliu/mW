@@ -98,24 +98,28 @@ class TrackLoader:
         print(f"After filter tracks: {len(tracks)}")
         # merge tracks that took place within one hour
         tracks = self._merge_tracks(tracks)
-        return [t for t in tracks if t.length >= self.min_length]
+        return [t for t in tracks if t.length >= 0]
+        # return [t for t in tracks if t.length >= self.min_length]
+
 
     def _filter_tracks(self, tracks):
-        filtered_tracks = []
-        for t in tracks:
-            file_name = t.file_names[0]
-            if int(t.length) == 0:
-                log.info(f"{file_name}: skipping empty track")
-            elif not t.start_time_local:
-                log.info(f"{file_name}: skipping track without start time")
-            elif not self.year_range.contains(t.start_time_local):
-                log.info(
-                    f"{file_name}: skipping track with wrong year {t.start_time_local.year}"
-                )
-            else:
-                t.special = file_name in self.special_file_names
-                filtered_tracks.append(t)
-        return filtered_tracks
+    
+        return tracks
+        # filtered_tracks = []
+        # for t in tracks:
+        #     file_name = t.file_names[0]
+        #     if int(t.length) == 0:
+        #         log.info(f"{file_name}: skipping empty track")
+        #     elif not t.start_time_local:
+        #         log.info(f"{file_name}: skipping track without start time")
+        #     elif not self.year_range.contains(t.start_time_local):
+        #         log.info(
+        #             f"{file_name}: skipping track with wrong year {t.start_time_local.year}"
+        #         )
+        #     else:
+        #         t.special = file_name in self.special_file_names
+        #         filtered_tracks.append(t)
+        # return filtered_tracks
 
     @staticmethod
     def _merge_tracks(tracks):
